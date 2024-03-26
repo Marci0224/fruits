@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyümölcsök</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Déli gyümölcsök</h1>
+        <p>Neked melyik a kedvenced?</p>
+        <select id="gyumolcsok" onchange="selFruit(this)">
+            <option value="0">Válassz...</option>
+        </select>
+        <div id="gyum"></div>
+        
+    </div>
+
+    <img src="" alt="">
+    <script src="data_fruits.js"></script>
+    <script>
+        console.log(fruits);
+        fruits.forEach(obj => {
+            document.getElementById("gyumolcsok").innerHTML+=`
+                <option value="${obj.id}">${obj.name}</option>
+            `
+        });
+
+        function selFruit(domObj){
+            let gyert=domObj.value;
+            if(gyert==0) return;
+            console.log(gyert);
+            /*fruits.forEach(obj=>{
+                if(gyert==obj.id){
+                    document.getElementById("gyum").innerHTML=`
+                    <div class="card">
+                        <img src="./img/${obj.image}" alt="${obj.name}">
+                    <h3>${obj.name}</h3>
+                    <p>${obj.descr}</p>
+                        </div>
+                `
+            }
+            });*/
+
+            let selectedObj=fruits.find(obj=>obj.id==gyert);
+            document.getElementById("gyum").innerHTML=`
+                    <div class="card">
+                        <img src="./img/${selectedObj.image}" alt="${selectedObj.name}">
+                    <h3>${selectedObj.name}</h3>
+                    <p>${selectedObj.descr}</p>
+                        </div>
+                `;
+            
+        }
+    </script>
+</body>
+</html>
